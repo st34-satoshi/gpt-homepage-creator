@@ -16,6 +16,7 @@ services:
     volumes:
       - .:/gpt_homepage_creator
     ports:
-      - "3011:3000"
+      - "0.0.0.0:3011:3000"
+      # - "3011:3000"
     depends_on:
       - db
