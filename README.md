@@ -1,24 +1,21 @@
-# README
+# GPT Homepage Creator
+create homepage using ChatGPT
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## LINE account
+TODO: QR code
 
-Things you may want to cover:
+## Get Started
+- `docker-compose build`
+- `docker-compose run web rails db:create`
+- `docker-compose up`
+- `open http://localhost:3011`
 
-* Ruby version
+### LINE
+When you use line webhook set line_channel_id, line_channel_secret, and line_channel_token in credentials.
 
-* System dependencies
+### ngrok
+- `ngrok http 3011`
+- set the url to config.hosts in development.rb
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Development
+- generate Home controller `docker-compose run web rails g controller Users`
