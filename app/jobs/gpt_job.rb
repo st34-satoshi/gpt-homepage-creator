@@ -1,11 +1,16 @@
 class GptJob < ApplicationJob
   queue_as :default
 
-  def perform(message_attributes)
+  def perform(line_message)
+    # line_message = {message: "", reply_token: ""}
+    logger.info "start job"
     # chat with GPT
-    puts "start job"
-    response = Message.chat_gpt(message_attributes)
-    puts "end job"
-    puts response.dig("choices", 0, "message", "content")
+    response = Message.chat_gpt(line_message[:message])
+
+    message = Message.new
+    # TODO: save message to DB
+    # reply to Line
+    message.reply_line(response.dig("choices", 0, "message", "content"), line_message[:reply_token])
+    logger.info "end job"
   end
 end

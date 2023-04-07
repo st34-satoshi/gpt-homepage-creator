@@ -14,11 +14,11 @@ class LinebotController < ApplicationController
           when Line::Bot::Event::Message
             case event.type
             when Line::Bot::Event::MessageType::Text
-                message = {
-                  type: 'text',
-                  text: event.message['text']
+                line_message = {
+                  message: event.message['text'],
+                  reply_token: event['replyToken']
                 }
-                client.reply_message(event['replyToken'], message)
+                GptJob.perform_later line_message
             end
           end
         end
