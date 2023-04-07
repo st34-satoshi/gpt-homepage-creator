@@ -7,6 +7,8 @@ TODO: QR code
 ## Get Started
 - `docker-compose build`
 - `docker-compose run web rails db:create`
+- `docker-compose run web rails db:migrate`
+- `docker-compose run -e EDITOR=vim web rails credentials:edit` # set line_channel_token
 - `docker-compose up`
 - `open http://localhost:3011`
 
