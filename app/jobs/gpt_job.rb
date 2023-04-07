@@ -1,11 +1,11 @@
 class GptJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    # Do something later
+  def perform(message_attributes)
+    # chat with GPT
     puts "start job"
-    puts "sleep 5 seconds"
-    sleep 5
+    response = Message.chat_gpt(message_attributes)
     puts "end job"
+    puts response.dig("choices", 0, "message", "content")
   end
 end

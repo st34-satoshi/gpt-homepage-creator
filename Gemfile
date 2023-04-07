@@ -50,6 +50,7 @@ gem "bootsnap", require: false
 
 gem "line-bot-api"
 gem "sidekiq"
+gem "ruby-openai"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
