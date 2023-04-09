@@ -2,8 +2,8 @@ class GptJob < ApplicationJob
   queue_as :default
 
   def perform(line_message)
-    # line_message = {message: "", reply_token: ""}
     logger.info "start job"
+    message = Message.create_from(line_message)
     # chat with GPT
     response = Message.chat_gpt(line_message[:message])
 

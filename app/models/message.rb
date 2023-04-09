@@ -1,4 +1,14 @@
 class Message < ApplicationRecord
+    before_create -> { self.uuid = SecureRandom.alphanumeric(10) }
+
+    def self.create_from(line_message)
+        Message.create(
+            user_message: line_message[:message],
+            reply_token: line_message[:reply_token],
+            user_id: line_message[:user_id],
+        )
+    end
+
     def self.gpt_system
         """
         あなたは優秀なエンジニアです。Userの要件を満たすホームページを作成してください。出力には必ずHTML形式を含めてください。

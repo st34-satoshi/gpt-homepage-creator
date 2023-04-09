@@ -16,7 +16,8 @@ class LinebotController < ApplicationController
             when Line::Bot::Event::MessageType::Text
                 line_message = {
                   message: event.message['text'],
-                  reply_token: event['replyToken']
+                  reply_token: event['replyToken'],
+                  user_id: event['source']['userId']
                 }
                 GptJob.perform_later line_message
             end
