@@ -15,12 +15,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_171418) do
   enable_extension "plpgsql"
 
   create_table "messages", force: :cascade do |t|
+    t.string "uuid"
     t.text "user_message"
     t.text "gpt_message"
     t.string "user_id"
     t.string "reply_token"
+    t.integer "access_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["uuid"], name: "index_messages_on_uuid", unique: true
   end
 
 end
