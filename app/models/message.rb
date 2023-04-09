@@ -9,23 +9,28 @@ class Message < ApplicationRecord
         )
     end
 
-    def self.gpt_system
+    def gpt_system
         """
         あなたは優秀なエンジニアです。Userの要件を満たすホームページを作成してください。出力には必ずHTML形式を含めてください。
         """
     end
 
-    def self.chat_gpt(text)
+    def chat_gpt(text)
+        logger.info "start chat gpt"
         client = OpenAI::Client.new(access_token: Rails.application.credentials.openai_secret_key)
         response = client.chat(
             parameters: {
                 model: "gpt-3.5-turbo",
                 messages: [
-                    { role: "system", content: Message.gpt_system },
+                    { role: "system", content: gpt_system },
                     { role: "user", content: text }
                 ],
                 temperature: 0.7,
             })
+        logger.info "finish chat gpt"
+        logger.info response
+        gpt_message = response.dig("choices", 0, "message", "content")
+        update(gpt_message: gpt_message)
     end
 
     def reply_line(text, reply_token)
