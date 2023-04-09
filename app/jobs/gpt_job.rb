@@ -7,7 +7,7 @@ class GptJob < ApplicationJob
     # chat with GPT
     response = message.chat_gpt(line_message[:message])
     # reply to Line
-    message.reply_line(message.gpt_message, line_message[:reply_token])
+    message.reply_line(line_message[:reply_token])
     logger.info "end job"
   end
 end

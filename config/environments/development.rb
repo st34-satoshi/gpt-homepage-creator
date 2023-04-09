@@ -70,4 +70,6 @@ Rails.application.configure do
 
   # allow ngrok
   config.hosts << "xxx.ngrok.io"
+
+  config.my_domain = "localhost:3001"
 end

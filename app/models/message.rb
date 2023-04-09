@@ -33,12 +33,16 @@ class Message < ApplicationRecord
         update(gpt_message: gpt_message)
     end
 
-    def reply_line(text, reply_token)
-        message = {
-          type: 'text',
-          text: text
+    def reply_line(reply_token)
+        message_gpt = {
+          type: "text",
+          text: gpt_message
         }
-        client.reply_message(reply_token, message)
+        message_url = {
+          type: "text",
+          text: "ホームページを作成しました。以下のURLにアクセスして確認してください。\n#{Rails.application.config.my_domain + "/homepage/" + uuid}"
+        }
+        client.reply_message(reply_token, [message_gpt, message_url])
     end
 
     def client
