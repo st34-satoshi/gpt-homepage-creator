@@ -1,6 +1,9 @@
 class HomepagesController < ApplicationController
     def show
-        # TODO: message = Message.first
-        render :html => "<!DOCTYPE html><html>hello</html>".html_safe
+        message = Message.find_by(uuid: params[:id])
+        raise ActionController::RoutingError.new('Not Found') if message.nil?
+        html_text = message.html_text
+        raise ActionController::RoutingError.new('Not Found') unless html_text
+        render :html => html_text.html_safe
     end
 end

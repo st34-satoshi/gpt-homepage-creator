@@ -52,4 +52,14 @@ class Message < ApplicationRecord
           config.channel_token = Rails.application.credentials.line_channel_token
         }
     end
+
+    def html_text
+        return false unless valid_html
+        '<!DOCTYPE html>' + gpt_message.split('<!DOCTYPE html>')[1].split('</html>')[0] + '</html>'
+    end
+
+    def valid_html
+        return false if gpt_message.nil?
+        gpt_message.scan('<!DOCTYPE html>').length == 1 && gpt_message.scan('</html>').length == 1
+    end
 end
