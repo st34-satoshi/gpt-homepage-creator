@@ -44,7 +44,7 @@ class Message < ApplicationRecord
         if valid_html
             message_url = {
               type: "text",
-              text: "ホームページを作成しました。以下のURLにアクセスして確認してください。\n#{Rails.application.config.my_domain + "/homepage/" + uuid}"
+              text: "ホームページを作成しました。以下のURLにアクセスして確認してください。\n#{Rails.application.config.my_domain + "/homepages/" + uuid}"
             }
             client.reply_message(reply_token, [message_gpt, message_url])
         else
