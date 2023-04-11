@@ -41,11 +41,15 @@ class Message < ApplicationRecord
           type: "text",
           text: gpt_message
         }
-        message_url = {
-          type: "text",
-          text: "ホームページを作成しました。以下のURLにアクセスして確認してください。\n#{Rails.application.config.my_domain + "/homepage/" + uuid}"
-        }
-        client.reply_message(reply_token, [message_gpt, message_url])
+        if valid_html
+            message_url = {
+              type: "text",
+              text: "ホームページを作成しました。以下のURLにアクセスして確認してください。\n#{Rails.application.config.my_domain + "/homepage/" + uuid}"
+            }
+            client.reply_message(reply_token, [message_gpt, message_url])
+        else
+            client.reply_message(reply_token, message_gpt)
+        end
     end
 
     def client
