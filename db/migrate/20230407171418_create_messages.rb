@@ -12,6 +12,7 @@ class CreateMessages < ActiveRecord::Migration[7.0]
 
       t.index :uuid, unique: true
       t.index :user_id
+      t.index :created_at
     end
   end
 end
