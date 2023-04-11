@@ -17,6 +17,8 @@ services:
     #   - "3011:3000"
     depends_on:
       - db
+    environment:
+      RAILS_ENV: production
   redis:
     image: redis
     command: redis-server --appendonly yes
