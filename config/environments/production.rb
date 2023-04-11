@@ -91,6 +91,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.hosts << "homepage-creator.stu345.com"
+
   config.my_domain = "https://homepage-creator.stu345.com"
 
   config.line_channel_id = Rails.application.credentials.line_channel_id_production
