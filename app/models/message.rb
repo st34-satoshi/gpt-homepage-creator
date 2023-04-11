@@ -1,5 +1,8 @@
 class Message < ApplicationRecord
-    before_create -> { self.uuid = SecureRandom.alphanumeric(10) }
+    before_create -> {
+        self.uuid = SecureRandom.alphanumeric(10)
+        self.access_count = 0
+    }
 
     def self.create_from(line_message)
         Message.create(
