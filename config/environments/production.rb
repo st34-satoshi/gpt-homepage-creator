@@ -92,4 +92,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.my_domain = "https://homepage-creator.stu345.com"
+
+  config.line_channel_id = Rails.application.credentials.line_channel_id_production
+  config.line_channel_secret = Rails.application.credentials.line_channel_secret_production
+  config.line_channel_token = Rails.application.credentials.line_channel_token_production
 end

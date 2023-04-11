@@ -72,4 +72,8 @@ Rails.application.configure do
   config.hosts << "xxx.ngrok.io"
 
   config.my_domain = "localhost:3001"
+
+  config.line_channel_id = Rails.application.credentials.line_channel_id
+  config.line_channel_secret = Rails.application.credentials.line_channel_secret
+  config.line_channel_token = Rails.application.credentials.line_channel_token
 end
