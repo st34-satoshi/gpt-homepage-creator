@@ -36,6 +36,7 @@ services:
       - redis
     environment:
       REDIS_URL: redis://redis:6379
+      RAILS_ENV: production
   nginx:
     container_name: gpt_homepage_creator_nginx
     build: docker/nginx/
