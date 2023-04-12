@@ -14,7 +14,7 @@ class Message < ApplicationRecord
 
     def gpt_system
         """
-        あなたは優秀なエンジニアです。Userの要件を満たすホームページを作成してください。出力には必ずHTML形式を含めてください。
+        あなたは優秀なエンジニアです。Userの要件を満たすホームページを作成してください。出力には必ずHTML形式を含めてください。cssやjavascriptのファイルは分けず同じHTMLの中に含めてください。
         """
     end
 
@@ -68,5 +68,13 @@ class Message < ApplicationRecord
     def valid_html
         return false if gpt_message.nil?
         gpt_message.scan('<!DOCTYPE html>').length == 1 && gpt_message.scan('</html>').length == 1
+    end
+
+    def template
+        # FIXME: hard coding is bad
+        if ["美味しいパン屋さん。", "美味しいパン屋さん", "おいしいパン屋さん。", "おいしいパン屋さん"].include?(user_message)
+            return Message.find_by(id: 18)
+        end
+        false
     end
 end
