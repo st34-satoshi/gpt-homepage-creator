@@ -2,6 +2,8 @@
 create homepage using ChatGPT
 
 ## LINE account
+You can use this app by adding this account.
+
 TODO: QR code
 
 ## Get Started
